@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Intervalec</string>
+    <string name="btn_start_active_interval">Poženi</string>
+    <string name="btn_start_select_interval">Stop</string>
+    <string name="btn_start_timer">Start</string>
+    <string name="btn_pause_timer">Pause</string>
+    <string name="btn_resume_timer">Resume</string>
+</resources>

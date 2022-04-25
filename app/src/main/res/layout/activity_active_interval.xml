@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_red"
+    android:padding="8dip"
+    >
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        >
+        <Button
+            android:id="@+id/btn_start_timer"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/btn_start_timer"
+            android:onClick="startCountdown"
+            android:layout_margin="2pt"
+            />
+        <Button
+            android:id="@+id/btn_pause_timer"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/btn_pause_timer"
+            android:onClick="pauseTimer"
+            android:layout_margin="2pt"
+            android:layout_toRightOf="@id/btn_start_timer"
+            />
+        <Button
+            android:id="@+id/btn_resume_timer"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/btn_resume_timer"
+            android:onClick="resumeTimer"
+            android:layout_margin="2pt"
+            android:layout_toRightOf="@id/btn_pause_timer"
+            />
+        <Button
+            android:id="@+id/btn_start_select_interval"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/btn_start_select_interval"
+            android:onClick="startSelectIntervalActivity"
+            android:layout_margin="2pt"
+            android:layout_toRightOf="@id/btn_resume_timer"
+            />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/timer_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24pt"
+        android:gravity="center_horizontal"
+        android:text="00"
+        />
+
+</LinearLayout>
