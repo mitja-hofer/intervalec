@@ -4,22 +4,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_blue"
+    android:background="@color/white"
     android:padding="8dip"
     >
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        >
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <Button
-            android:id="@+id/btn_start_active_interval"
+            android:id="@+id/btn_toggle_timer"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/btn_start_active_interval"
-            android:onClick="startActiveIntervalActivity"
+            android:layout_margin="10pt"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/new_interval"
             />
+
     </RelativeLayout>
 </LinearLayout>

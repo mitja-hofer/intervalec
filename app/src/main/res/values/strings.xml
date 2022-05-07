@@ -5,4 +5,6 @@
     <string name="btn_start_timer">Start</string>
     <string name="btn_pause_timer">Pause</string>
     <string name="btn_resume_timer">Resume</string>
+    <string name="btn_stop">stop</string>
+    <string name="new_interval">+</string>
 </resources>
