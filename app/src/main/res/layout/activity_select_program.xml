@@ -8,35 +8,16 @@
     android:padding="8dip"
     >
 
-    <TextView
-        android:id="@+id/interval_list_program_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20pt"
-        android:gravity="center_horizontal"
-        android:text=""
-        />
 
     <ListView
-        android:id="@+id/interval_list"
+        android:id="@+id/program_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ListView>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <Button
-            android:id="@+id/btn_start_interval"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_margin="10pt"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:text="@string/start_interval"
-            android:onClick="startActiveProgramActivity"
-            android:textSize="20pt"
-            />
-        <Button
-            android:id="@+id/btn_add_interval"
+            android:id="@+id/btn_add_program"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_margin="10pt"

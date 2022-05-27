@@ -7,4 +7,5 @@
     <string name="btn_resume_timer">Resume</string>
     <string name="btn_stop">stop</string>
     <string name="new_interval">+</string>
+    <string name="start_interval">START</string>
 </resources>

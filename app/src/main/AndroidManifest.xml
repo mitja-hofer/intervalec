@@ -10,14 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Intervalec">
         <activity
-            android:name="com.tnuv.intervalec.SelectIntervalActivity"
+            android:name="com.tnuv.intervalec.SelectProgramActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tnuv.intervalec.ActiveIntervalActivity"/>
+        <activity android:name="com.tnuv.intervalec.ActiveProgramActivity"/>
+        <activity android:name="com.tnuv.intervalec.SelectIntervalActivity"/>
 
 
     </application>
