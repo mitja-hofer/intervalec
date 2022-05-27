@@ -7,7 +7,10 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_active_interval.xml" value="0.25074310302734376" />
         <entry key="app/src/main/res/layout/activity_select_interval.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_select_program.xml" value="0.26979166666666665" />
+        <entry key="app/src/main/res/layout/interval_list_item.xml" value="0.21467391304347827" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.11702127659574468" />
+        <entry key="app/src/main/res/layout/program_list_item.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>

@@ -1,7 +1,5 @@
 package com.tnuv.intervalec;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,29 +7,40 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class SelectIntervalActivity extends AppCompatActivity {
     private ListView lv;
+    int programIndex;
+    Program program;
     List<Map<String, String>> intervalsMap = new ArrayList<Map<String, String>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_interval);
+
+        Intent intent = getIntent();
+        programIndex = intent.getIntExtra("programIndex", 0);
+        SharedPreferences prefs = getSharedPreferences("intervalec", Context.MODE_PRIVATE); // name should be unique across all apps
+        Gson gson = new Gson();
+        String json = prefs.getString("intervalec_programs", "[]");
+        Program[] programs = gson.fromJson(json, Program[].class);
+        program = programs[programIndex];
+        ((TextView) findViewById(R.id.interval_list_program_name)).setText(program.name);
+
         //get all saved intervals
         // https://stackoverflow.com/questions/7145606/how-do-you-save-store-objects-in-sharedpreferences-on-android
 
-        SharedPreferences prefs = getSharedPreferences("intervalec_intervals", Context.MODE_PRIVATE); // name should be unique across all apps
-        Gson gson = new Gson();
-
+        /*
         if (!prefs.contains("intervalec_intervals")) {
             Interval[] defaultInterval = {new Interval("prvi", 5, 3, 5)};
             SharedPreferences.Editor prefsEditor = prefs.edit();
@@ -39,9 +48,7 @@ public class SelectIntervalActivity extends AppCompatActivity {
             prefsEditor.putString("intervalec_intervals", intervalJson);
             prefsEditor.commit();
         }
-
-        String json = prefs.getString("intervalec_intervals", "[]");
-        Interval[] intervals = gson.fromJson(json, Interval[].class);
+         */
 
         /*
         // TODO: remove example of adding a new interval
@@ -62,11 +69,13 @@ public class SelectIntervalActivity extends AppCompatActivity {
         */
 
 
-        for (int i = 0; i < intervals.length; i++) {
-            intervalsMap.add(intervals[i].parseToHashMap());
+        for (int i = 0; i < program.intervals.length; i++) {
+            intervalsMap.add(program.intervals[i].parseToHashMap());
         }
-        lv = findViewById(R.id.list);
-        lv.setOnItemClickListener((adapterView, view, i, l) -> startActiveIntervalActivity(view, intervals[i]));
+        lv = findViewById(R.id.interval_list);
+        /*
+        lv.setOnItemClickListener((adapterView, view, i, l) -> editIntervalActivity(view, programIndex));
+         */
     }
 
     @Override
@@ -75,19 +84,17 @@ public class SelectIntervalActivity extends AppCompatActivity {
 
         SimpleAdapter adapter = new SimpleAdapter(this,
                 intervalsMap,
-                R.layout.list_item,
+                R.layout.interval_list_item,
                 new String[] {"name", "activeSeconds", "restSeconds", "reps"},
-                new int[] {R.id.name, R.id.activeSeconds, R.id.restSeconds, R.id.reps}
+                new int[] {R.id.interval_list_name, R.id.activeSeconds, R.id.restSeconds, R.id.reps}
         );
 
         lv.setAdapter(adapter);
     }
 
-    public void startActiveIntervalActivity(View v, Interval interval) {
-        Intent intent = new Intent(SelectIntervalActivity.this, ActiveIntervalActivity.class);
-        intent.putExtra("activeSeconds", interval.activeSeconds);
-        intent.putExtra("restSeconds", interval.restSeconds);
-        intent.putExtra("reps", interval.reps);
+    public void startActiveProgramActivity(View v) {
+        Intent intent = new Intent(SelectIntervalActivity.this, ActiveProgramActivity.class);
+        intent.putExtra("programIndex", programIndex);
         startActivity(intent);
     }
 
@@ -99,4 +106,11 @@ public class SelectIntervalActivity extends AppCompatActivity {
     public void finishSelectIntervalActivity(View v) {
         SelectIntervalActivity.this.finish();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(SelectIntervalActivity.this, SelectProgramActivity.class);
+        startActivity(intent);
+    }
+
 }
