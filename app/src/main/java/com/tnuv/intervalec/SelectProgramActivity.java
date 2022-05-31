@@ -47,10 +47,10 @@ public class SelectProgramActivity extends AppCompatActivity {
         if (programs.length == 2) {
             List<Program> programsList = new ArrayList<Program>(Arrays.asList(programs));
             Interval[] newIntervals = {
-                    new Interval("warm up", 3, 0, 1),
+                    new Interval("warm up", 3, 0, 0),
                     new Interval("run", 3, 3, 3),
             };
-            Program newProgram = new Program("run-fixed", newIntervals);
+            Program newProgram = new Program("run", newIntervals);
             programsList.add(newProgram);
             Program[] newPrograms = new Program[ programsList.size() ];
             programsList.toArray( newPrograms );

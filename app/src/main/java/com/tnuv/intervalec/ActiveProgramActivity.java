@@ -6,13 +6,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import java.util.Locale;
 
 
 public class ActiveProgramActivity extends AppCompatActivity {
@@ -20,9 +23,11 @@ public class ActiveProgramActivity extends AppCompatActivity {
     long millisLeft;
     TextView mTextView;
     CountDownTimer timer;
-    int activeSeconds, restSeconds, reps, repsLeft, programIndex, intervalIndex = 0;
+    int repsLeft, programIndex, intervalIndex = 0;
     Program program;
+    Interval interval;
     boolean isActive;
+    TextToSpeech tts;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,14 +45,30 @@ public class ActiveProgramActivity extends AppCompatActivity {
         Program[] programs = gson.fromJson(json, Program[].class);
         program = programs[programIndex];
         ((TextView) findViewById(R.id.program_name)).setText(program.name);
-        startInterval();
+
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                if(i != TextToSpeech.ERROR) {
+                    tts.setLanguage(Locale.UK);
+                }
+                if(i == TextToSpeech.SUCCESS) {
+                    startInterval();
+                }
+            }
+        });
+
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
         if (timer != null) {
             timer.cancel();
+        }
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
         }
     }
 
@@ -58,15 +79,12 @@ public class ActiveProgramActivity extends AppCompatActivity {
 
     public void startInterval() {
         TextView mTextView = findViewById(R.id.timer_text);
-        Interval interval = program.intervals[intervalIndex];
-        activeSeconds = interval.activeSeconds;
-        restSeconds = interval.restSeconds;
-        reps = interval.reps;
-        repsLeft = reps;
-        mTextView.setText(Util.millisToMinSec(activeSeconds*1000));
-        ((TextView) findViewById(R.id.active_active_status)).setText(Util.millisToMinSec(activeSeconds*1000));
-        ((TextView) findViewById(R.id.active_rest_status)).setText(Util.millisToMinSec(restSeconds*1000));
-        ((TextView) findViewById(R.id.active_reps_status)).setText(Integer.toString(reps));
+        interval = program.intervals[intervalIndex];
+        repsLeft = interval.reps;
+        mTextView.setText(Util.millisToMinSec(interval.activeSeconds*1000));
+        ((TextView) findViewById(R.id.active_active_status)).setText(Util.millisToMinSec(interval.activeSeconds*1000));
+        ((TextView) findViewById(R.id.active_rest_status)).setText(Util.millisToMinSec(interval.restSeconds*1000));
+        ((TextView) findViewById(R.id.active_reps_status)).setText(Integer.toString(interval.reps));
         ((TextView) findViewById(R.id.interval_name)).setText(interval.name);
         startActive();
     }
@@ -75,14 +93,20 @@ public class ActiveProgramActivity extends AppCompatActivity {
         isActive = true;
         View v = findViewById(R.id.active_main);
         v.setBackgroundColor(Color.GREEN);
-        startTimer(activeSeconds * 1000);
+        if (repsLeft == interval.reps) {
+            tts.speak(interval.name, TextToSpeech.QUEUE_FLUSH, null);
+        } else {
+            tts.speak("active", TextToSpeech.QUEUE_FLUSH, null);
+        }
+        startTimer(interval.activeSeconds * 1000);
     }
 
     private void startRest(){
         isActive = false;
         View v = findViewById(R.id.active_main);
         v.setBackgroundColor(Color.RED);
-        startTimer(restSeconds * 1000);
+        tts.speak("rest", TextToSpeech.QUEUE_FLUSH, null);
+        startTimer(interval.restSeconds * 1000);
     }
 
 
@@ -99,16 +123,13 @@ public class ActiveProgramActivity extends AppCompatActivity {
             public void onFinish() {
                 if (repsLeft > 0) {
                     if (isActive) {
-                        //TODO: play sound
                         startRest();
                     } else {
                         repsLeft--;
                         ((TextView) findViewById(R.id.active_reps_status)).setText(Integer.toString(repsLeft));
-                        //TODO: play sound
                         startActive();
                     }
                 } else {
-                    //TODO: play sound
                     intervalIndex++;
                     if (intervalIndex > program.intervals.length){
                         mTextView.setText("done!");
