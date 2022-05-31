@@ -57,6 +57,10 @@ public class ActiveProgramActivity extends AppCompatActivity {
                 }
             }
         });
+        // needed to run in emulator
+        if (Build.FINGERPRINT.contains("generic")) {
+            startInterval();
+        }
 
     }
 
