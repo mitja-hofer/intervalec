@@ -7,7 +7,6 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/program_name"
         android:textSize="20pt"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
@@ -45,10 +44,11 @@
                 />
 
             <EditText
-                android:id="@+id/interval_name_input"
+                android:id="@+id/program_name_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/enter_program_name"
+                android:gravity="center_horizontal"
                 android:text="" />
 
 
@@ -62,20 +62,35 @@
             android:paddingBottom="10pt">
 
             <Button
-                android:id="@+id/btn_save_interval"
+                android:id="@+id/btn_save_program"
                 android:layout_width="0dp"
                 android:layout_height="40pt"
                 android:layout_margin="2pt"
                 android:layout_weight="0.33"
-                android:text="@string/btn_save"/>
+                android:text="@string/btn_save"
+                android:onClick="addProgram"
+                />
 
             <Button
-                android:id="@+id/btn_clear_interval"
+                android:id="@+id/btn_clear_program"
                 android:layout_width="0dp"
                 android:layout_height="40pt"
                 android:layout_margin="2pt"
                 android:layout_weight="0.33"
-                android:text="@string/btn_clear" />
+                android:text="@string/btn_clear"
+                android:onClick="clearProgram"
+                />
+
+            <Button
+                android:id="@+id/btn_back_program"
+                android:layout_width="0dp"
+                android:layout_height="40pt"
+                android:layout_margin="2pt"
+                android:layout_weight="0.33"
+                android:text="@string/btn_back"
+                android:onClick="finishAddProgramActivity"
+                />
+
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

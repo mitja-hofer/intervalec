@@ -20,4 +20,8 @@
     <string name="create_new_interval">Create new interval</string>
     <string name="enter_name">Enter name:</string>
     <string name="create_new_program">Create new program</string>
+    <string name="minutes">Min</string>
+    <string name="seconds">Sec</string>
+    <string name="dvopicje">:</string>
+    <string name="btn_back">Back</string>
 </resources>
