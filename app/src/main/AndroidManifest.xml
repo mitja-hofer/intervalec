@@ -20,7 +20,7 @@
         <activity android:name="com.tnuv.intervalec.ActiveProgramActivity"/>
         <activity android:name="com.tnuv.intervalec.SelectIntervalActivity"/>
         <activity android:name="com.tnuv.intervalec.AddIntervalActivity"/>
-
+        <activity android:name="com.tnuv.intervalec.AddProgramActivity"/>
     </application>
 
 </manifest>
