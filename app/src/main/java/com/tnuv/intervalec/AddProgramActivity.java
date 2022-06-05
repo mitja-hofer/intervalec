@@ -22,8 +22,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AddProgramActivity extends AppCompatActivity {
 
     EditText programNameInput;
-    int programIndex;
-    Program program;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +34,13 @@ public class AddProgramActivity extends AppCompatActivity {
 
     public void addProgram(View v){
         String programName = String.valueOf(programNameInput.getText());
+
         SharedPreferences prefs = getSharedPreferences("intervalec", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = prefs.getString("intervalec_programs", "[]");
         Program[] programs = gson.fromJson(json, Program[].class);
 
-        List<Program> programsList = new ArrayList<Program>(Arrays.asList(programs));
+        List<Program> programsList = new ArrayList<>(Arrays.asList(programs));
         Interval[] emptyInterval = new Interval[0];
         Program newProgram = new Program(programName,emptyInterval);
         programsList.add(newProgram);
