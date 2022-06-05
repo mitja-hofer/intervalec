@@ -29,8 +29,6 @@ import java.util.Map;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AddIntervalActivity extends AppCompatActivity {
-    // https://stackoverflow.com/questions/7145606/how-do-you-save-store-objects-in-sharedpreferences-on-android
-    // see example of adding new interval in SelectIntervalActivity
     EditText actTimeInputMinutes, actTimeInputSeconds, restTimeInputMinutes,restTimeInputSeconds, inputIntervalName, repsInput;
     Program program;
     int programIndex;
@@ -78,46 +76,28 @@ public class AddIntervalActivity extends AppCompatActivity {
         inputIntervalName.setText("");
     }
 
+    private int readInt(EditText input){
+        return stringToInt(input.getText().toString());
+    }
+
+    private int stringToInt(String value){
+        if (value.equals("")){
+            return 0;
+        }
+
+        return Integer.parseInt(value);
+    }
+
     public void addInterval(View v){
 
-        int actInputMinutes;
-        int actInputSeconds;
-        int rstInputMinutes;
-        int rstInputSeconds;
         int activeSeconds;
         int restSeconds;
-        int reps;
 
-        if (actTimeInputMinutes.getText().toString().equals("")){
-            actInputMinutes = 0;
-        }else{
-            actInputMinutes = Integer.parseInt(actTimeInputMinutes.getText().toString());
-        }
-
-        if (actTimeInputSeconds.getText().toString().equals("")){
-            actInputSeconds = 0;
-        }else{
-            actInputSeconds = Integer.parseInt(actTimeInputSeconds.getText().toString());
-        }
-
-        if (restTimeInputMinutes.getText().toString().equals("")){
-            rstInputMinutes = 0;
-        }else{
-            rstInputMinutes = Integer.parseInt(restTimeInputMinutes.getText().toString());
-        }
-
-        if (restTimeInputSeconds.getText().toString().equals("")){
-            rstInputSeconds = 0;
-        }else{
-            rstInputSeconds = Integer.parseInt(restTimeInputSeconds.getText().toString());
-        }
-
-        if (repsInput.getText().toString().equals("")){
-            reps = 0;
-        }else{
-            reps = Integer.parseInt(repsInput.getText().toString());
-        }
-
+        int actInputMinutes = readInt(actTimeInputMinutes);
+        int actInputSeconds = readInt(actTimeInputSeconds);
+        int rstInputMinutes = readInt(restTimeInputMinutes);
+        int rstInputSeconds = readInt(restTimeInputSeconds);
+        int reps = readInt(repsInput);
 
         String intervalName =  inputIntervalName.getText().toString();
 
@@ -141,7 +121,7 @@ public class AddIntervalActivity extends AppCompatActivity {
         intervalsList.toArray( newIntervalList );
 
         currentProgram.intervals = newIntervalList;
-        programsList.add(currentProgram);
+        programsList.set(programIndex, currentProgram);
 
         Program[] updatedProgramsList = new Program[programsList.size()];
         programsList.toArray(updatedProgramsList);
@@ -151,10 +131,12 @@ public class AddIntervalActivity extends AppCompatActivity {
         prefsEditor.putString("intervalec_programs", updatedProgramJson);
         prefsEditor.apply();
 
+
         Intent intent = new Intent(AddIntervalActivity.this, SelectIntervalActivity.class);
         intent.putExtra("programIndex", programIndex);
         startActivity(intent);
 
     }
+
 
 }

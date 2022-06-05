@@ -39,7 +39,7 @@ public class ActiveProgramActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         programIndex = intent.getIntExtra("programIndex", 0);
-        SharedPreferences prefs = getSharedPreferences("intervalec", Context.MODE_PRIVATE); // name should be unique across all apps
+        SharedPreferences prefs = getSharedPreferences("intervalec", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = prefs.getString("intervalec_programs", "[]");
         Program[] programs = gson.fromJson(json, Program[].class);
@@ -57,7 +57,6 @@ public class ActiveProgramActivity extends AppCompatActivity {
                 }
             }
         });
-        // needed to run in emulator
         if (Build.FINGERPRINT.contains("generic")) {
             startInterval();
         }

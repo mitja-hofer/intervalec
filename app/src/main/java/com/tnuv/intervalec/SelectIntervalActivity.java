@@ -34,7 +34,7 @@ public class SelectIntervalActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         programIndex = intent.getIntExtra("programIndex", 0);
-        SharedPreferences prefs = getSharedPreferences("intervalec", Context.MODE_PRIVATE); // name should be unique across all apps
+        SharedPreferences prefs = getSharedPreferences("intervalec", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = prefs.getString("intervalec_programs", "[]");
         Program[] programs = gson.fromJson(json, Program[].class);
@@ -43,45 +43,10 @@ public class SelectIntervalActivity extends AppCompatActivity {
         btn_start = findViewById(R.id.btn_start_interval);
         noIntervals = Toast.makeText(getApplicationContext(),"Please add intervals.",Toast.LENGTH_SHORT);
 
-        //get all saved intervals
-        // https://stackoverflow.com/questions/7145606/how-do-you-save-store-objects-in-sharedpreferences-on-android
-
-        /*
-        if (!prefs.contains("intervalec_intervals")) {
-            Interval[] defaultInterval = {new Interval("prvi", 5, 3, 5)};
-            SharedPreferences.Editor prefsEditor = prefs.edit();
-            String intervalJson = gson.toJson(defaultInterval);
-            prefsEditor.putString("intervalec_intervals", intervalJson);
-            prefsEditor.commit();
-        }
-         */
-
-        /*
-        // TODO: remove example of adding a new interval
-        if (intervals.length == 1) {
-            List<Interval> intervalsList = new ArrayList<Interval>(Arrays.asList(intervals));
-            Interval newInterval = new Interval("drugi", 3, 3, 3);
-            intervalsList.add(newInterval);
-            Interval[] newIntervals = new Interval[ intervalsList.size() ];
-            intervalsList.toArray( newIntervals );
-            SharedPreferences.Editor prefsEditor = prefs.edit();
-            String intervalJson = gson.toJson(newIntervals);
-            prefsEditor.putString("intervalec_intervals", intervalJson);
-            prefsEditor.commit();
-
-            json = prefs.getString("intervalec_intervals", "[]");
-            intervals = gson.fromJson(json, Interval[].class);
-        }
-        */
-
-
         for (int i = 0; i < program.intervals.length; i++) {
             intervalsMap.add(program.intervals[i].parseToHashMap());
         }
         lv = findViewById(R.id.interval_list);
-        /*
-        lv.setOnItemClickListener((adapterView, view, i, l) -> editIntervalActivity(view, programIndex));
-         */
     }
 
     @Override

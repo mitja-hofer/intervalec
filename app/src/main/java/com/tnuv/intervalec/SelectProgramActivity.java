@@ -43,26 +43,6 @@ public class SelectProgramActivity extends AppCompatActivity {
         String json = prefs.getString("intervalec_programs", "[]");
         Program[] programs = gson.fromJson(json, Program[].class);
 
-        // TODO: remove example of adding a new interval/program
-        if (programs.length == 2) {
-            List<Program> programsList = new ArrayList<Program>(Arrays.asList(programs));
-            Interval[] newIntervals = {
-                    new Interval("warm up", 3, 0, 0),
-                    new Interval("run", 3, 3, 3),
-            };
-            Program newProgram = new Program("run", newIntervals);
-            programsList.add(newProgram);
-            Program[] newPrograms = new Program[ programsList.size() ];
-            programsList.toArray( newPrograms );
-            SharedPreferences.Editor prefsEditor = prefs.edit();
-            String programJson = gson.toJson(newPrograms);
-            prefsEditor.putString("intervalec_programs", programJson);
-            prefsEditor.commit();
-
-            json = prefs.getString("intervalec_programs", "[]");
-            programs = gson.fromJson(json, Program[].class);
-        }
-
 
         for (int i = 0; i < programs.length; i++) {
             programsMap.add(programs[i].parseToHashMap());
