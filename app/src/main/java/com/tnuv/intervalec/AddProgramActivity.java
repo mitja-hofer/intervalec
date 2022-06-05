@@ -36,8 +36,6 @@ public class AddProgramActivity extends AppCompatActivity {
 
     public void addProgram(View v){
         String programName = String.valueOf(programNameInput.getText());
-        //Intent intent = getIntent();
-        //programIndex = intent.getIntExtra("programIndex", 0);
         SharedPreferences prefs = getSharedPreferences("intervalec", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = prefs.getString("intervalec_programs", "[]");

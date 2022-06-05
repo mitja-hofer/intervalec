@@ -100,6 +100,7 @@ public class SelectIntervalActivity extends AppCompatActivity {
 
     public void startAddIntervalActivity(View v) {
         Intent intent = new Intent(SelectIntervalActivity.this, AddIntervalActivity.class);
+        intent.putExtra("programIndex", programIndex);
         startActivity(intent);
     }
 
