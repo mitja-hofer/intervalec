@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="8dip"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/program_name"
+        android:textSize="20pt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        />
+
+    <TextView
+        android:id="@+id/interval_name"
+        android:textSize="15pt"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_new_interval"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation = "vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation = "vertical">
+
+            <TextView
+                android:id="@+id/enter_interval_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:text="@string/enter_name"
+                android:textSize="12pt" />
+
+            <EditText
+                android:id="@+id/interval_name_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/enter_interval_name"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/enter_active_time"
+                android:textSize="12pt"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/interval_name_input"
+                android:text="@string/active_time_select"
+                />
+            <LinearLayout
+                android:id="@+id/active_time_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/enter_active_time"
+                android:gravity="center_horizontal"
+                >
+
+                <EditText
+                    android:id="@+id/active_time_input_minutes"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/minutes"
+                    android:inputType="number" />
+                <TextView
+                    android:id="@+id/dvopicje1"
+                    android:gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dvopicje"
+                    />
+                <EditText
+                    android:id="@+id/active_time_input_seconds"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/seconds"
+                    android:inputType="number"
+                    android:layout_margin="2dp"
+                    android:gravity="center_horizontal"
+                    />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/enter_rest_time"
+                android:textSize="12pt"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/active_time_input"
+                android:text="@string/rest_time_select"
+                />
+            <LinearLayout
+                android:id="@+id/rest_time_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/enter_rest_time"
+                android:gravity="center_horizontal"
+                >
+
+                <EditText
+                    android:id="@+id/rest_time_input_minutes"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/minutes"
+                    android:inputType="number"
+                    android:layout_margin="2dp"
+                    android:gravity="center_horizontal"
+                    />
+                <TextView
+                    android:id="@+id/dvopicje2"
+                    android:gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dvopicje"
+                    />
+                <EditText
+                    android:id="@+id/rest_time_input_seconds"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/seconds"
+                    android:inputType="number"
+                    android:layout_margin="2dp"
+                    android:gravity="center_horizontal"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/enter_reps"
+                android:textSize="12pt"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rest_time_input"
+                android:text="@string/reps_select"
+                />
+
+            <EditText
+                android:id="@+id/reps_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/enter_reps"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:text="" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="10pt">
+
+            <Button
+                android:id="@+id/btn_save_interval"
+                android:layout_width="0dp"
+                android:layout_height="40pt"
+                android:layout_margin="2pt"
+                android:layout_weight="0.33"
+                android:text="@string/btn_save"
+                android:onClick="addInterval"
+                />
+
+            <Button
+                android:id="@+id/btn_clear_interval"
+                android:layout_width="0dp"
+                android:layout_height="40pt"
+                android:layout_margin="2pt"
+                android:layout_weight="0.33"
+                android:text="@string/btn_clear"
+                android:onClick="clearInterval"
+                />
+
+            <Button
+                android:id="@+id/btn_back_interval"
+                android:layout_width="0dp"
+                android:layout_height="40pt"
+                android:layout_margin="2pt"
+                android:layout_weight="0.33"
+                android:text="@string/btn_back"
+                android:onClick="finishAddIntervalActivity"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

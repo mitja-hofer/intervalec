@@ -92,7 +92,7 @@ public class SelectProgramActivity extends AppCompatActivity {
     }
 
     public void startAddProgramActivity(View v) {
-        Intent intent = new Intent(SelectProgramActivity.this, AddIntervalActivity.class);
+        Intent intent = new Intent(SelectProgramActivity.this, AddProgramActivity.class);
         startActivity(intent);
     }
 

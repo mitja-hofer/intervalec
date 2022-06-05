@@ -8,4 +8,20 @@
     <string name="btn_stop">stop</string>
     <string name="new_interval">+</string>
     <string name="start_interval">START</string>
+    <string name="btn_clear">Clear</string>
+    <string name="btn_save">Save</string>
+    <string name="input_interval_name">Input interval name</string>
+    <string name="active_time">Active time</string>
+    <string name="active_time_select">Input active time:</string>
+    <string name="rest_time">Rest time</string>
+    <string name="rest_time_select">Input rest time:</string>
+    <string name="reps_select">Input repetitions:</string>
+    <string name="reps">Reps</string>
+    <string name="create_new_interval">Create new interval</string>
+    <string name="enter_name">Enter name:</string>
+    <string name="create_new_program">Create new program</string>
+    <string name="minutes">Min</string>
+    <string name="seconds">Sec</string>
+    <string name="dvopicje">:</string>
+    <string name="btn_back">Back</string>
 </resources>
