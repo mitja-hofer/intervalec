@@ -20,10 +20,15 @@
     <ListView
         android:id="@+id/interval_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="3">
+
 
         <Button
             android:id="@+id/btn_start_interval"
