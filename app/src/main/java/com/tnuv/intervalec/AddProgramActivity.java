@@ -27,9 +27,7 @@ public class AddProgramActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_program);
-
         programNameInput = findViewById(R.id.program_name_input);
-
     }
 
     public void addProgram(View v){

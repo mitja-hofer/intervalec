@@ -25,12 +25,10 @@ public class SelectProgramActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_program);
-        //get all saved intervals
-        // https://stackoverflow.com/questions/7145606/how-do-you-save-store-objects-in-sharedpreferences-on-android
-
         SharedPreferences prefs = getSharedPreferences("intervalec", Context.MODE_PRIVATE); // name should be unique across all apps
         Gson gson = new Gson();
 
+        // default program
         if (!prefs.contains("intervalec_programs")) {
             Interval[] defaultIntervals = {new Interval("prvi", 5, 3, 5)};
             Program[] defaultPrograms = {new Program("program", defaultIntervals)};
@@ -42,7 +40,6 @@ public class SelectProgramActivity extends AppCompatActivity {
 
         String json = prefs.getString("intervalec_programs", "[]");
         Program[] programs = gson.fromJson(json, Program[].class);
-
 
         for (int i = 0; i < programs.length; i++) {
             programsMap.add(programs[i].parseToHashMap());
@@ -76,7 +73,13 @@ public class SelectProgramActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void finishSelectProgramActivity(View v) {
+    public void finishSelectProgramActivity() {
         SelectProgramActivity.this.finish();
+        this.finishAffinity();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishSelectProgramActivity();
     }
 }

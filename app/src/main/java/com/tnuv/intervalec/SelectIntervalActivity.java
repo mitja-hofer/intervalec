@@ -89,5 +89,4 @@ public class SelectIntervalActivity extends AppCompatActivity {
         Intent intent = new Intent(SelectIntervalActivity.this, SelectProgramActivity.class);
         startActivity(intent);
     }
-
 }

@@ -53,14 +53,12 @@ public class AddIntervalActivity extends AppCompatActivity {
         restTimeInputMinutes.setFilters( new InputFilter[]{ new MinMaxFilter( "0" , "120" )}) ;
         restTimeInputSeconds.setFilters( new InputFilter[]{ new MinMaxFilter( "0" , "59" )}) ;
 
-
         SharedPreferences prefs = getSharedPreferences("intervalec", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = prefs.getString("intervalec_programs", "[]");
         Program[] programs = gson.fromJson(json, Program[].class);
         program = programs[programIndex];
         ((TextView) findViewById(R.id.program_name)).setText(program.name);
-
     }
 
     public void finishAddIntervalActivity(View v) {
@@ -84,12 +82,10 @@ public class AddIntervalActivity extends AppCompatActivity {
         if (value.equals("")){
             return 0;
         }
-
         return Integer.parseInt(value);
     }
 
     public void addInterval(View v){
-
         int activeSeconds;
         int restSeconds;
 
@@ -131,12 +127,8 @@ public class AddIntervalActivity extends AppCompatActivity {
         prefsEditor.putString("intervalec_programs", updatedProgramJson);
         prefsEditor.apply();
 
-
         Intent intent = new Intent(AddIntervalActivity.this, SelectIntervalActivity.class);
         intent.putExtra("programIndex", programIndex);
         startActivity(intent);
-
     }
-
-
 }
