@@ -19,5 +19,4 @@ public class Program {
         programMap.put("num_intervals", Integer.toString(this.intervals.length));
         return programMap;
     }
-
 }

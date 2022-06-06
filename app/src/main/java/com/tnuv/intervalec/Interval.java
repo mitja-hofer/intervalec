@@ -1,6 +1,5 @@
 package com.tnuv.intervalec;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Interval {
