@@ -17,10 +17,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tnuv.intervalec.ActiveProgramActivity"/>
-        <activity android:name="com.tnuv.intervalec.SelectIntervalActivity"/>
-        <activity android:name="com.tnuv.intervalec.AddIntervalActivity"/>
-        <activity android:name="com.tnuv.intervalec.AddProgramActivity"/>
+        <activity android:name="com.tnuv.intervalec.ActiveProgramActivity"
+            android:parentActivityName=".SelectIntervalActivity"/>
+        <activity android:name="com.tnuv.intervalec.SelectIntervalActivity"
+            android:parentActivityName=".SelectProgramActivity"/>
+        <activity android:name="com.tnuv.intervalec.AddIntervalActivity"
+            android:parentActivityName=".SelectIntervalActivity"/>
+        <activity android:name="com.tnuv.intervalec.AddProgramActivity"
+            android:parentActivityName=".SelectProgramActivity"/>
     </application>
 
 </manifest>

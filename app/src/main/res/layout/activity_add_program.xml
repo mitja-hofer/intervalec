@@ -81,16 +81,6 @@
                 android:onClick="clearProgram"
                 />
 
-            <Button
-                android:id="@+id/btn_back_program"
-                android:layout_width="0dp"
-                android:layout_height="40pt"
-                android:layout_margin="2pt"
-                android:layout_weight="0.33"
-                android:text="@string/btn_back"
-                android:onClick="finishAddProgramActivity"
-                />
-
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>
