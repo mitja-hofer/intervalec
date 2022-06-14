@@ -57,6 +57,7 @@ public class ActiveProgramActivity extends AppCompatActivity {
                 }
             }
         });
+        // tts does not initialize in emulator
         if (Build.FINGERPRINT.contains("generic")) {
             startInterval();
         }
@@ -158,6 +159,4 @@ public class ActiveProgramActivity extends AppCompatActivity {
         btn.setText(R.string.btn_pause_timer);
         btn.setOnClickListener(vv -> pauseTimer(vv));
     }
-
-
 }
